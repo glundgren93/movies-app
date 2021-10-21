@@ -1,15 +1,27 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
+import api from "./api";
 import SearchBar from "./components/SearchBar/SearchBar";
 import MovieList from "./components/MovieList/MovieList";
 import Navbar from "./components/Navbar/Navbar";
 import ToastWithLink from "./components/Toast/Toast";
 
+export function useIsMounted() {
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => (isMounted.current = false);
+  }, []);
+
+  return isMounted;
+}
+
 const Home = () => {
+  const isMounted = useIsMounted();
   const [movies, setMovies] = useState([]);
   const [term, setTerm] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -18,12 +30,18 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       if (term.length >= 3) {
-        const result = await axios(
-          `https://api.themoviedb.org/3/search/movie/?query=${term}&api_key=0b64d968a31f60b80f3e5f14b7b86b95`
-        );
-        setMovies(result.data.results);
+        const result = await api.searchMovies(term);
+        if (isMounted.current) {
+          setMovies(result.data.results);
+        }
+      } else if (term.length === 0) {
+        const result = await api.getPopularMovies();
+        if (isMounted.current) {
+          setMovies(result.data.results);
+        }
       }
     }
+
     fetchData();
   }, [term]);
 

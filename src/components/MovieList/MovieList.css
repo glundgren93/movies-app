@@ -25,6 +25,7 @@ code {
   font-weight: bold;
   text-decoration: none; /* no underline */
   color: black;
+  display: flex;
 }
 
 .movie-item-content {
@@ -34,12 +35,19 @@ code {
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .movie-title {
   font-size: 18px;
   font-weight: 400;
   text-transform: uppercase;
+}
+
+.movie-controls {
+  margin-top: auto;
 }
 
 .movie-image-wrap {

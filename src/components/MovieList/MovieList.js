@@ -33,15 +33,17 @@ const MovieList = ({
             </div>
           </div>
           <div className="movie-title">{movie.original_title}</div>
-          <hr />
-          <div>
+
+          <div className="movie-controls">
             <Icon
+              title="favorite"
               iconName={
                 isInList("favorites", movie) ? "favorite" : "favorite_border"
               }
               onClickHandler={(e) => handleList("favorites", movie)}
             />
             <Icon
+              title="watch-later"
               iconName={
                 isInList("watchLater", movie) ? "watch_later" : "schedule"
               }
@@ -55,9 +57,7 @@ const MovieList = ({
 
   return (
     <>
-      <div className="list-title">
-        
-      </div>
+      <div className="list-title"></div>
       <div className="movie-list">
         {movies && movies.length > 0 ? (
           movies.map(renderMovieList)
