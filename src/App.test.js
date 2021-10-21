@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("SearchBar works", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const searchInput = await screen.findByPlaceholderText(
+    /Search for your favorite movies/i
+  );
+  fireEvent.change(searchInput, { target: { value: "batman" } });
+
+  await waitFor(() => {
+    expect(screen.getByText("The Batman")).toBeInTheDocument();
+  });
 });
