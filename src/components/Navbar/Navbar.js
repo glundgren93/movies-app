@@ -1,10 +1,8 @@
 import "./Navbar.css";
 import React from "react";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  let { path, url } = useRouteMatch();
-  console.log(url);
 
   return (
     <>
