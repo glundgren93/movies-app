@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./Home";
+import Home from "../Home/Home";
 
 function App() {
   return <Home></Home>;

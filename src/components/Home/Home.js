@@ -3,11 +3,11 @@ import { ToastContainer, toast } from "react-toastify";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import api from "./api";
-import SearchBar from "./components/SearchBar/SearchBar";
-import MovieList from "./components/MovieList/MovieList";
-import Navbar from "./components/Navbar/Navbar";
-import ToastWithLink from "./components/Toast/Toast";
+import api from "../../api";
+import SearchBar from "../SearchBar/SearchBar";
+import MovieList from "../MovieList/MovieList";
+import Navbar from "../Navbar/Navbar";
+import ToastWithLink from "../Toast/Toast";
 
 export function useIsMounted() {
   const isMounted = useRef(false);
