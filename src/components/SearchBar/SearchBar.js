@@ -31,7 +31,7 @@ const SearchBar = ({ onSearch }) => {
       <input
         autoFocus
         className="search-bar"
-        placeholder="Search for your favorite movies"
+        placeholder="Search"
         value={term}
         onChange={(e) => handleSearch(e.target.value)}
       />
